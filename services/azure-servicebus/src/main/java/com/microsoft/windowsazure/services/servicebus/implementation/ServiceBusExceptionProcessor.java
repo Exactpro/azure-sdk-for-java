@@ -26,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.microsoft.windowsazure.services.servicebus.ServiceBusContract;
+import com.microsoft.windowsazure.services.servicebus.ServiceBusContractAsync;
 import com.microsoft.windowsazure.services.servicebus.models.BrokeredMessage;
 import com.microsoft.windowsazure.services.servicebus.models.CreateQueueResult;
 import com.microsoft.windowsazure.services.servicebus.models.CreateRuleResult;
@@ -68,6 +69,11 @@ public class ServiceBusExceptionProcessor implements ServiceBusContract {
         this.next = next;
     }
 
+    @Override
+    public ServiceBusContractAsync async() {
+        return this.next.async();
+    }
+    
     @Override
     public ServiceBusContract withFilter(ServiceFilter filter) {
         return new ServiceBusExceptionProcessor(next.withFilter(filter));

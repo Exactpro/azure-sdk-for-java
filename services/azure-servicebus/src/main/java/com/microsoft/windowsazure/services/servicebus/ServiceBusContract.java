@@ -50,6 +50,8 @@ import com.microsoft.windowsazure.services.servicebus.models.TopicInfo;
 public interface ServiceBusContract extends
         JerseyFilterableService<ServiceBusContract> {
 
+    ServiceBusContractAsync async();
+    
     /**
      * Sends a queue message.
      * 
